@@ -1,0 +1,249 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Begin of package                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{header}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Option processing                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare a switch for bibliography at the end of the document.
+\newif\if@bibatend\@bibatendfalse
+\DeclareOption{bibatend}{
+  \@bibatendtrue
+}
+
+% Declare a switch for a colored document.
+\newif\if@color\@colorfalse
+\DeclareOption{color}{
+  \@colortrue
+}
+
+\newif\if@beamer\@beamerfalse
+\DeclareOption{beamer}{
+  \@beamertrue
+}
+
+\ProcessOptions\relax
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               Input encoding                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ifluatex}
+\ifluatex
+\else
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage[utf8]{inputenc}
+\fi
+
+\RequirePackage{csquotes}
+\RequirePackage{babel}
+%\RequirePackage[iso]{date}
+\RequirePackage{microtype} % optional, for aesthetics
+\RequirePackage{fontawesome}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			Bibliography			%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\if@bibatend
+    \newcommand\bibliographyfile{../BIB/Bibliography.bib}
+	\RequirePackage[backend=biber,style=numeric-comp,sorting=none,natbib=true]{biblatex}
+	\IfFileExists{\bibliographyfile}{
+      \bibliography{\bibliographyfile}
+      \if@beamer
+      \else
+        \AtEndDocument{\printbibliography}
+      \fi
+    }{
+      \PackageError{header}{Bibliography file not found!}
+      {Try to fix the path of the bibliographyfile that is currently set to \bibliographyfile.}
+    }
+\fi
+%\addbibresource{./BIB/Bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			Hyperref				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{hyperref}
+\RequirePackage{lastpage}
+\hypersetup{
+	breaklinks=false,
+	citecolor=red,
+	colorlinks=true,
+	linkcolor=red,
+	menucolor=black,
+	pdfauthor={Thomas Arne Hensel},
+	urlcolor=blue
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				math				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{commath}
+\usepackage{siunitx}
+\RequirePackage{eulervm}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Figures and Plotting		%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\graphicspath{{SECTIONS/GRAPHICS/}}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{caption,subcaption}%for subfigures
+\RequirePackage{standalone}%to separately produce standalone figures
+\RequirePackage{import}%to import figures later
+%
+\RequirePackage{tikz}%drawings like geometries
+\usetikzlibrary{calc,matrix,positioning}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\RequirePackage{tikzscale}
+%
+\RequirePackage{pgfplots}
+\pgfplotsset{
+    ,compat=newest%1.12
+    }
+\usepgfplotslibrary{groupplots}
+\usepgflibrary{patterns}
+\RequirePackage{pgfplotstable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				Tables				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{multirow}
+\RequirePackage{lscape}
+\RequirePackage{pdflscape}
+\RequirePackage{rotating}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			print git-hash			%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{etoolbox}
+\newtoggle{submissionBuild}
+\settoggle{submissionBuild}{false}
+\nottoggle{submissionBuild}{%
+	\RequirePackage{gitver}
+	\RequirePackage{soul}
+	\sethlcolor{green}
+}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			Headings				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+%\renewcommand{\sectionmark}[1]{ \markright{#1} }
+
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize{p. \thepage\ / \pageref{LastPage}}}
+\fancyhead[RE]{\emph{ \nouppercase{\leftmark}} }
+\fancyhead[LO]{\emph{ \nouppercase{\rightmark}} }
+\fancyfoot[CE,CO]{\iftoggle{submissionBuild}{}{%
+  	\noindent{\emph{Revision}\/}: \hl{\mbox{\#\gitVer}}
+	}}
+
+
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+}
+% This will set fancy headings to the top of the page. The page number will be
+% accompanied by the total number of pages. That way, you will know if any page is missing.
+% If you do not want this for your document, you can just use``\pagestyle{plain}``.
+%
+\RequirePackage{todonotes}
+%----------------------
+%       Own definitions and macros
+%----------------------
+%
+%
+%----------------------
+%       Annotation
+%----------------------
+%
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}%for blue comments
+%\DeclareUnicodeCharacter{FFFD}{\blue{XXXX}}%to find false displayed characters, e.g. in Bib
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				math				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{
+declare function={
+        f(\z,\v,\x) = \z+\v*\x-0.5*\g*\x^2;
+        }
+}
+%Define IFO-Parameters
+\newcommand{\tmin}{0.7}
+\newcommand{\dtmax}{\dtstart}
+\newcommand{\dtstart}{1.0}
+\newcommand{\T}{2.0}
+\newcommand{\zmin}{3.0}
+\newcommand{\dvstart}{0.8}
+\newcommand{\vstart}{1.0}
+\newcommand{\zmax}{9.0}
+\newcommand{\g}{0.6}
+\newcommand{\keff}{1.0}
+%
+% Word like operators.
+\DeclareMathOperator{\acosh}{arcosh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\asinh}{arsinh}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\csch}{cshs}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sech}{sech}
+\renewcommand{\Im}{\mathop{{}\mathrm{Im}}\nolimits}
+\renewcommand{\Re}{\mathop{{}\mathrm{Re}}\nolimits}
+
+% Fourier transform.
+\DeclareMathOperator{\fourier}{\ensuremath{\mathcal{F}}}
+
+% Roman versions of “e” and “i” to serve as Euler's number and the imaginary
+% constant.
+\newcommand{\ee}{\eup}
+\newcommand{\eup}{\mathrm e}
+\newcommand{\ii}{\iup}
+\newcommand{\iup}{\mathrm i}
+
+% Symbols for the various mathematical fields (natural numbers, integers,
+% rational numbers, real numbers, complex numbers).
+\newcommand{\C}{\ensuremath{\mathbb C}}
+\newcommand{\N}{\ensuremath{\mathbb N}}
+\newcommand{\Q}{\ensuremath{\mathbb Q}}
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\Z}{\ensuremath{\mathbb Z}}
+
+% Shape like operators.
+\DeclareMathOperator{\dalambert}{\Box}
+\DeclareMathOperator{\laplace}{\bigtriangleup}
+\newcommand{\curl}{\vnabla \times}
+\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
+\newcommand{\vnabla}{\vec \nabla}
+
+\newcommand{\half}{\frac 12}
+
+% Unit vector (German „Einheitsvektor“).
+\newcommand{\ev}{\hat{\vec e}}
+
+% Scientific notation for large numbers.
+\newcommand{\e}[1]{\cdot 10^{#1}}
+
+% Mathematician's notation for the inner (scalar, dot) product.
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+% Placeholders.
+\newcommand{\emesswert}{\del{\messwert \pm \messwert}}
+\newcommand{\fehlt}{\textcolor{darkred}{Hier fehlen noch Inhalte.}}
+\newcommand{\messwert}{\textcolor{blue}{\square}}
+\newcommand{\punkte}{\textcolor{white}{xxxxx}}
+
+% Separator for equations on a single line.
+\newcommand{\eqnsep}{,\quad}
+
+% Quantum Mechanics
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+\newcommand{\braket}[2]{\left\langle #1 \left. \vphantom{#1 #2} \right| #2 \right\rangle}
