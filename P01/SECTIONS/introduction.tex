@@ -1,0 +1,84 @@
+%\documentclass[class=article, crop=false]{standalone}
+%\input{preamble}
+%\begin{document}
+Navigation has been part of human history since its very beginning. From the astrolabe to the magnetic compass or rather modern versions of geographical maps, men utilized natural features on earth and in the sky to locate themselves and navigate to remote places. These techniques were operated successively by locking into the reference system of distant stars, a nearby mountain or the sun and retrieve the present location from that data.
+
+The first planes were equipped with complex gyro systems to realize a so called inertial navigation system \cite{Siciliano2008}. The advantage thereof was that no reference system - besides a starting vector of position and velocity - was needed. By measuring acceleration and rotation of the aircraft, the subsequent positions were calculated from the initial coordinates. However, these system proved to be only fairly accurate and displayed a drift of several kilometers per hour.
+
+The Global Positioning System (GPS) allows even civilians to access precise geolocation information since the 1980s \cite{Beutler2009}. The accuracy to determine a position is at 5\,km to 30\,cm and has temporarily replaced attempts on inertial navigation systems. However, there are already needs for even more accurate positioning techniques or cases were a satellite connection is neither possible nor desired, as for some industrial or military applications. The satellite link could either be unavailable (as underwater or underground), too slow or a security issue. Hence, the need for inertial navigation systems reemerges.
+
+Inertial Measurement Units (IMU) are compact systems that allow internal time dependent geopositioning of an object. To overcome the shortcomings of the aforementioned mechanical IMUs some effort has been made to employ extremely sensitive quantum system for inertial navigation purposes \cite{Geiger2020arxiv,Geiger2011}.
+
+Classical IMUs consist of a (mechanical) gyroscope, an accelerometer and a processing unit. The data from gyroscope and accelerometer are fed into the processing unit and converted into position, velocity and attitude. Taking into account the initial position of the system, its movement can be tracked and displayed on a geographical map. The underlying mechanism to determine the final position and velocity is the integration of the output signal. The integration induces an error propagation. A constant offset in attitude results in a quadratic error in velocity and a cubic error growth in position, due to the subsequent integration to obtain the actual position. Here, quantum systems could prove to be less error prone and - with their higher sensitivity - superior to classical IMUs. The ultimate goal is to develop on chip Quantum-IMUs that allow accurate and precise inertial navigation for civil, industrial and military applications.
+
+Promising candidates for that aim are so called \emph{atom interferometers}. They have reached technical maturity and are soon available for industrial application \cite{Nyman2006,Geiger2011}. Atom interferometers have been used to determine an aircraft's acceleration \cite{Barrett2016}, put on a sounding rocket \cite{Seidel2015} and utilized to measure the local gravitational acceleration on earth with high accuracy \cite{Wu2019}. They are usually operated  at the standard quantum limit, but may even move beyond it to the Heisenberg limit with momentum squeezed or entangled states \cite{Szigeti2020}.
+
+Atom interferometers use superpositions of quantum states to generate matter waves that are sensitive to accelerations and rotations, among others. These experiments can be operated with sources of cold atoms or Bose-Einstein condensed atoms. However, it is not yet clear which source will provide the greatest benefit precision wise.
+This thesis is a contribution to the ongoing development of precision inertial quantum sensing. It's main objective is to investigate the suitability of different atomic sources for high precision atom interferometric sensors and clarify the suitability of condensed and non-condensed atoms for a variety of technical applications. This concerns the development of quantum IMUs and stretches to tests of fundamental physics or geodesic applications.
+
+
+\subsection{Scope of the thesis}
+Atom interferometers are mainly used for inertially sensitive measurements~\cite{Geiger2020arxiv} and a number of tests of fun\-da\-men\-tal physics~\cite{Bouchendira2011,Asenbaum2020arxiv}.
+Key levers to increase the sensitivity are the transfer of a large number of photons during the beam-splitting processes, extending the time of free fall while maintaining contrast and atomic flux.
+At the same time, the characterization of errors requires an increased level of control over the manipulation and preparation of atoms.
+Limitations of interferometers operating with molasses-cooled atoms and their mitigation by reducing the residual expansion rates were studied theoretically~\cite{Loriani2019} and experimentally~\cite{LouchetChauvet2011,Schkolnik2015}.
+
+Proposals for space missions, in particular, rely on Delta-Kick collimation (DKC) via optical or magnetic potentials to exploit extended times of free fall in microgravity~\cite{Chu1986,Ammann1997,Mntinga2013,Kovachy2015} and achieve extremely low wave packet expansion rates, corresponding to pK temperatures in thermal ensembles.
+Bose-Einstein-condensed (BEC) ensembles are better suited for DKC aiming at long interrogation times~\cite{Loriani2019}, but seem to suffer from a reduced atomic flux due to the evaporation despite recent promising studies~\cite{Rudolph2015}.
+Molasses-cooled atoms feature a higher number of atoms, but are typically velocity-filtered in 1D~\cite{Kasevich1991}, which ultimately implies a lower flux of atoms as we will detail in our study.
+
+In this paper, together with the trade-off between flux and expansion rate, we contrast the appropriateness of the two regimes of atomic ensembles to perform precision tests by evaluating the respective shot noise, cycle times, excitation rates and most prominent systematics such as gravity gradients (GGs), Coriolis force, wave-front aberrations (WFA) and mean-field interactions.
+
+To illustrate our comparative study between condensed and thermal sources, we consider three prominent cases for free-fall atom interferometers: a gravimeter, a gravity-gradiometer, and a test of the universality of free fall (also known as Weak Equivalence Principle (WEP) test). Thermal sources are defined, in this study, as atomic ensembles with a vanishing condensed fraction. Conversely, BEC sources possess a condensed fraction of $100\%$.
+For each case, we limit the maximum allowed diameter of the atomic ensemble at the recombination pulse to preserve contrast.
+Subsequently, this enables the determination of the shot noise and other error terms for the trade-off.
+
+This article is structured as follows. Starting with a brief overview of the state of the art of light-pulse atom interferometry, we continue with relevant error contributions to the read-out phases of atom interferometers, quantitatively evaluating them in the three study cases and - finally - discussing the limits of the condensed or thermal regime of the respective interferometry source.
+%
+\subsection{State of the art}
+Experiments based on the interference of freely falling atoms measure accelerations~\cite{Peters1999,Geiger2020arxiv}, rotations~\cite{Gustavson1997,Gustavson2000,Durfee2006,Canuel2006,Dutta2016}, gravity gradients~\cite{Snadden1998,Bertoldi2006}, determine fundamental constants~\cite{Bouchendira2011,Parker2018,Rosi2014}, perform tests of fundamental physics~\cite{Fray2004,Bouchendira2011,Rosi2014,Schlippert2014,Tarallo2014,Zhou2015,Asenbaum2020arxiv,Albers2020}, and are proposed for the detection of gravitational waves~\cite{Graham2013,Hogan2016,Loriani2019,Schubert2019arxiv,Canuel2018}.
+A recent review of the advances in the field of inertial sensing collects most relevant experiments and proposals so far~\cite{Geiger2020arxiv}.
+Beyond proof-of-principle demonstrations, ongoing developments target commercialisation as well as challenge the state of the art in sensor performance and in fundamental science.
+
+The most prominent examples of atomic inertial sensors with thermal ensembles are gravimeters~\cite{Freier2016,Mnoret2018} that reach for example a sensitivity of $1.4\times 10^{-8}$\,g at 1\,s~\cite{LeGout2008} and gyroscopes, which measure rotations below $10^{-10}$\,rad/s in a few 100\,s~\cite{Dutta2016}.
+A compact prototype  of a gravimeter using BECs reaches a sensitivity of $\delta g/g=3.7\times10^ {-6}$ per cycle~\cite{Abend2016}. This suggests the possibility of a targeted stability on the order of $7.8\times10^{-10}$ after 100\,s of integration time with a state of the art BEC source~\cite{Rudolph2015}.
+In a proof-of-principle experiment ~\cite{Dickerson2013}, a point-like BEC source for atom interferometers is implemented in a large fountain experiment to achieve sensitivities of $6.7\times10^{-12}$\,g.
+
+The gravitational constant $G$ is determined to a value $G=6.67191(99)\times 10^{-11}$\,m$^3$kg$^{-1}$s$^{-2}$ with a relative uncertainty of 150\,ppm~\cite{Rosi2014} limited by the initial velocity spread of the atoms in the interferometer.
+
+Most recently~\cite{Parker2018,Yu2019,Clad2019}, there has been extensive work on the determination of the fine-structure constant $\alpha$ via determination of the ratio $\hbar/m$ with matter-wave interferometry, where~$m$ is the atomic mass and~$\hbar$ is Planck's reduced constant.
+In a fountain with thermal cesium atoms, the fine-structure constant is determined with an expected statistical error of 0.008\,ppb~\cite{Yu2019}.
+The systematics are at the 0.12\,ppb level, mainly stemming from spurious accelerations.
+With thermal rubidium, $\hbar/m$ is measured at the $5\times 10^{-9}$ level~\cite{Clad2019}.
+An ytterbium contrast interferometer with BECs~\cite{Jamison2014} is used to demonstrate an $\hbar/m$-measurement using large momentum transfer, controlling diffraction effects and atomic interactions with suppression of vibrational effects allowing sub-ppb precision.
+
+In \cite{Zhou2015}, a dual-species WEP test with $^{85}$Rb and $^{87}$Rb reaches a statistical uncertainty of $\eta=0.8\times 10^{-8}$ and is limited by systematic effects, e.g. the Coriolis effect to $\eta=(2.8\pm 3.0)\times 10^{-8}$. Most recently, this limit has been pushed further down to $\eta=1.6\pm5.2\times 10^{-12}$ \cite{Asenbaum2020arxiv}.
+The STE-QUEST mission~\cite{Aguilera2014} aims at testing the WEP at the $10^{-15}$ level and beyond by measuring the differential acceleration of a $^{87}$Rb BEC and a $^{41}$K BEC over a total mission time of 5 years~\cite{Battelier2019}.
+The concept Quantum Test of the Equivalence principle and Space Time (QTEST)~\cite{Williams2016} intends to determine $\eta$ at the $10^{-15}$ level with thermal ensembles over four integration periods of three months each aboard the International Space Station. 
+%
+\subsection{Performance indicators}
+In the previous subsection, the state-of-the-art sensitivities for measurements of rotations, accelerations, the fine-structure constant and the E{\"o}tv{\"o}s ratio have been stated. The phase that is to be determined depends on several experimental parameters like the effective wave vector $k_\text{eff}$, the interrogation time 2T, the velocity $v$ of the atomic ensemble perpendicular to the sensitive axis, the length of the detector baseline $L$ or $D$ and the frequency $f$ of the gravitational wave. For the commonly-proposed interferometry schemes discussed above, one can summarize the performance-defining scaling factors to be:
+    \begin{itemize}
+        \item $k_\text{eff}T^2$ for gravimetry, WEP tests and $G$ measurements,
+        
+        \item $k_\text{eff}^2T$ for $\hbar/m$ measurements,
+        
+        \item $k_\text{eff}L\cos(f T)$ for gravitational wave detection,
+        
+        \item $k_\text{eff}DT^2$ for gravity gradiometry,
+        
+        \item $k_\text{eff}T^2v$ for rotations.
+    \end{itemize}
+Increasing these scaling factors allows an improvement in sensitivity.
+
+In this paper we consider shot-noise-limited measurements, where the single-shot phase uncertainty is given by 
+\begin{equation}
+    \sigma_{\phi_\text{SN}}=1/(C\sqrt{N_\text{at}}),
+\end{equation}
+defined by the number of interfering atoms $N_\text{at}$ and interferometric contrast $C$. The experiments are repeated n$_\text{cycle}$ times to average (`integrate') the noise of a single-shot phase.
+
+With the assumption of a shot-noise-limited measurement, a fixed atom number and no reduction in contrast $C$, an increase in the scale factor by enhancing the free evolution time $T$ or the effective wave number $k_\text{eff}$ can increase the single-shot phase sensitivity.
+Interrogation times 2T of several seconds were realized~\cite{Dickerson2013} and an extension to 10\,s was proposed on space platforms~\cite{Aguilera2014}. The effective momentum transfer ranges from few 10 k$_\text{eff}$ for a single multi-photon pulse up to a few 100\,s of k$_\text{eff}$~\cite{Gebbe2019arxiv} for benchmark experiments.
+The integration time to reach the desired performance may range from typically $10^4$\,s up to several months.
+Generally, the large number of atoms in thermal ensembles is an advantage over BECs to reduce shot noise. Their increased spatial extension is expected to suppress mean-field effects efficiently compared to BECs. On the other hand, the exact same position and velocity distributions might limit the scaling factors that one could achieve due to large systematic uncertainties and atom losses. In the next section, these systematics and other potentially performance-limiting effects are quantified.
+%\end{document}

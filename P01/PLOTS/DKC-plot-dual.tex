@@ -1,0 +1,91 @@
+%\documentclass{standalone}
+%\input{preamble}
+%\begin{document}
+%
+%----------------------
+%       Data Import
+%----------------------
+%
+\newcommand{\dataBECdkc}{../xy/dkc_BEC.dat}
+\newcommand{\dataBECnodkc}{../xy/nodkc_BEC.dat}
+\newcommand{\dataCLSdkc}{../xy/dkc_CLS.dat}
+\newcommand{\dataCLSnodkc}{../xy/nodkc_CLS.dat}
+
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={
+	    group size= 2 by 1, 
+	    horizontal sep = 0.4cm,
+	    xticklabels at=edge bottom
+},
+	%width=1/2*\linewidth+0.1cm,
+    %height=1.2*(1/2*\linewidth+0.1cm),
+    legend style={nodes={scale=0.8, transform shape}}
+]
+
+%Small times ============================
+\nextgroupplot[
+	xmin=0, xmax=0.55,
+	ymin=0, ymax=3.1,	
+	ylabel={$2\,\sigma_r(t)$\,(mm)},
+	restrict y to domain=0:3.1,
+	axis y line*= left,
+	xtick={0,0.25,0.5,0.55},
+	xticklabels={0,0.25,0.5,}
+]
+
+%data curves
+\addplot +[blue,thick,mark=none] table[x index=0, y index=1] {\dataBECdkc};
+\addplot +[blue,thick,dashed,mark=none, forget plot] table[x index=0, y index=1] {\dataBECnodkc};
+\addplot +[red,thick,mark=none] table[x index=0, y index=1] {\dataCLSdkc};
+\addplot +[red,thick,dashed,mark=none, forget plot] table[x index=0, y index=1] {\dataCLSnodkc};
+
+%dashed vertical line
+\draw[dotted, thin] ({axis cs:0.025,0}|-{rel axis cs:0,1}) -- ({axis cs:0.025,0}|-{rel axis cs:0,0});
+
+%coordinates for discontinuity
+\coordinate (c11) at (rel axis cs:0,1);
+\coordinate (c12) at (rel axis cs:1,1);
+\coordinate (c21) at (rel axis cs:0,0);
+\coordinate (c22) at (rel axis cs:1,0);
+
+%Large times ============================
+\nextgroupplot[
+	xmin=1, xmax=10.1,
+	ymin=0, ymax=82,	
+	restrict y to domain=0:80,
+	axis y line*=right,
+	xtick={1,2,4,6,8,10},
+	xticklabels={,2,4,6,8,10},
+	ytick={0,20,40,60,80},
+	yticklabels={0,20,40,60,80}
+]
+
+%data curves
+\addplot +[blue,thick,mark=none,restrict x to domain=1:10] table[x index=0, y index=1] {\dataBECdkc};
+\addplot +[blue,thick,dashed,mark=none, forget plot,restrict x to domain=1:10] table[x index=0, y index=1] {\dataBECnodkc};
+\addplot +[red,thick,mark=none,restrict x to domain=1:10] table[x index=0, y index=1] {\dataCLSdkc};
+\addplot +[red,thick,dashed,mark=none, forget plot,restrict x to domain=1:10] table[x index=0, y index=1] {\dataCLSnodkc};
+
+%legend
+\addlegendentry{$^{87}$Rb BEC};
+\addlegendentry{$^{87}$Rb thermal};
+
+%coordinates for discontinuity
+\coordinate (c13) at (rel axis cs:0,1);
+\coordinate (c14) at (rel axis cs:1,1);
+\coordinate (c23) at (rel axis cs:0,0);
+\coordinate (c24) at (rel axis cs:1,0);
+
+\end{groupplot}
+
+%common x-axis label
+\node[black] at ( $ (c21)!1/2!(c24) +(0,-0.75)$ |-0,-5.5) {t (s)};
+
+%hacked discontinuity
+\filldraw[color=gray,opacity=0.2] (c12)--(c13)--(c23)--(c22);
+\draw[black, dotted,thick] (c12)--(c13);
+\draw[black, dotted,thick] (c22)--(c23);
+
+\end{tikzpicture}
+%\end{document}

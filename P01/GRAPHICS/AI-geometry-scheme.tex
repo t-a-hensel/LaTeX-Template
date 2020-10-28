@@ -1,0 +1,136 @@
+%\documentclass{standalone}
+%\input{preamble}
+%\begin{document}
+
+\begin{tikzpicture}
+%
+\begin{axis}[
+    %title={Dual-species Mach-Zehnder atom interferometer},
+    xlabel={t}, xlabel style={at={(1,0)}, anchor=west},
+    ylabel={z (m)}, ylabel style={rotate=-90,at={(0,1)}, anchor=south},
+    xmin=0.0, xmax=\tmin+\dtstart+2*\T+2*\dtmax,
+    ymin=0, ymax=\zmax,
+    axis lines = left,
+    y=1.cm,
+    x=1.cm,
+    xtick={0,0.7,1.7,3.7,5.7,6.7},%{0,\tmin,\tmin+\dtstart,\tmin+\dtstart+\T,\tmin+\dtstart+\T+\T,\tmin+\dtstart+\T+\T+\dtmax},
+    xticklabels={$0$,$t_{start}$,$t_0$,$t_0+T$,$t_0+2T$,$t_{end}$},
+    ytick={0,1,...,12},
+    legend pos=north west,
+    %grid=both,
+    ymajorgrids=true,
+    grid style=dashed,
+    ]
+    %upper path
+    \addplot[color=blue, samples=50, very thick][domain=\tmin:\tmin+\dtstart]{
+        f(
+        \zmin
+        ,\vstart
+        ,(x-\tmin)
+        )
+    };
+    \addplot[color=blue, samples=50, very thick, dashed][domain=\tmin+\dtstart:\tmin+\dtstart+\T]{
+        f(
+            f(\zmin,\vstart,\dtstart)
+            ,\vstart-\g*\dtstart+\keff
+            ,x-\tmin-\dtstart
+        )
+    };
+    \addplot[color=blue, samples=50, very thick][domain=\tmin+\dtstart+\T:\tmin+\dtstart+\T+\T]{
+        f(
+            f(f(\zmin,\vstart,\dtstart),\vstart-\g*\dtstart+\keff,\T)
+            ,\vstart-\g*(\dtstart+\T)
+            ,x-\tmin-\dtstart-\T
+            )
+    };
+    %lower path
+    \addplot[color=blue, samples=50, very thick][domain=\tmin+\dtstart:\tmin+\dtstart+\T]{
+        f(
+            f(\zmin,\vstart,\dtstart)
+            ,\vstart-\g*\dtstart
+            ,x-\tmin-\dtstart
+        )
+    };
+    \addplot[color=blue, samples=50, very thick, dashed][domain=\tmin+\dtstart+\T:\tmin+\dtstart+\T+\T]{
+        f(
+            f(f(\zmin,\vstart,\dtstart),\vstart-\g*\dtstart,\T)
+            ,\vstart-\g*(\dtstart+\T)+\keff
+            ,x-\tmin-\dtstart-\T
+        )
+    };
+    \addplot[color=blue, samples=50, very thick, dashed][domain=\tmin+\dtstart+2*\T:\tmin+\dtstart+\T+\T+\dtmax]{
+        f(
+            f(f(f(\zmin,\vstart,\dtstart),\vstart-\g*\dtstart,\T),\vstart-\g*(\dtstart+\T)+\keff,\T)
+            ,\vstart-\g*(\dtstart+\T+\T)
+            ,x-\tmin-\dtstart-\T-\T
+        )
+    };
+    \addplot[color=blue, samples=50, very thick][domain=\tmin+\dtstart+2*\T:\tmin+\dtstart+\T+\T+\dtmax]{
+        f(
+            f(f(f(\zmin,\vstart,\dtstart),\vstart-\g*\dtstart,\T),\vstart-\g*(\dtstart+\T)+\keff,\T)
+            ,\vstart-\g*(\dtstart+\T+\T)-\keff
+            ,x-\tmin-\dtstart-\T-\T
+        )
+    };    
+    %upper path
+    \addplot[color=black, samples=50, very thick][domain=\tmin:\tmin+\dtstart]{
+        f(
+        \zmin
+        ,\vstart+\dvstart
+        ,(x-\tmin)
+        )
+    };
+    \addplot[color=black, samples=50, very thick, dashed][domain=\tmin+\dtstart:\tmin+\dtstart+\T]{
+        f(
+            f(\zmin,\vstart+\dvstart,\dtstart)
+            ,\vstart+\dvstart-\g*\dtstart+\keff
+            ,x-\tmin-\dtstart
+        )
+    };
+    \addplot[color=black, samples=50, very thick][domain=\tmin+\dtstart+\T:\tmin+\dtstart+\T+\T]{
+        f(
+            f(f(\zmin,\vstart+\dvstart,\dtstart),\vstart+\dvstart-\g*\dtstart+\keff,\T)
+            ,\vstart+\dvstart-\g*(\dtstart+\T)
+            ,x-\tmin-\dtstart-\T
+            )
+    };
+    %lower path
+    \addplot[color=black, samples=50, very thick][domain=\tmin+\dtstart:\tmin+\dtstart+\T]{
+        f(
+            f(\zmin,\vstart+\dvstart,\dtstart)
+            ,\vstart+\dvstart-\g*\dtstart
+            ,x-\tmin-\dtstart
+        )
+    };
+    \addplot[color=black, samples=50, very thick, dashed][domain=\tmin+\dtstart+\T:\tmin+\dtstart+\T+\T]{
+        f(
+            f(f(\zmin,\vstart+\dvstart,\dtstart),\vstart+\dvstart-\g*\dtstart,\T)
+            ,\vstart+\dvstart-\g*(\dtstart+\T)+\keff
+            ,x-\tmin-\dtstart-\T
+        )
+    };
+    \addplot[color=black, samples=50, very thick][domain=\tmin+\dtstart+2*\T:\tmin+\dtstart+\T+\T+\dtmax]{
+        f(
+            f(f(f(\zmin,\vstart+\dvstart,\dtstart),\vstart+\dvstart-\g*\dtstart,\T),\vstart+\dvstart-\g*(\dtstart+\T)+\keff,\T)
+            ,\vstart+\dvstart-\g*(\dtstart+\T+\T)-\keff
+            ,x-\tmin-\dtstart-\T-\T
+        )
+    };  
+    \addplot[color=black, samples=50, very thick, dashed][domain=\tmin+\dtstart+2*\T:\tmin+\dtstart+\T+\T+\dtmax]{
+        f(
+            f(f(f(\zmin,\vstart+\dvstart,\dtstart),\vstart+\dvstart-\g*\dtstart,\T),\vstart+\dvstart-\g*(\dtstart+\T)+\keff,\T)
+            ,\vstart+\dvstart-\g*(\dtstart+\T+\T)
+            ,x-\tmin-\dtstart-\T-\T
+        )
+    };  
+\end{axis}
+
+    %create Laserbeams
+    \draw[decorate, decoration = snake, very thick, red, opacity=0.5]
+    ({\tmin + \dtstart},0) to ({\tmin + \dtstart},{.9*\zmax}) node[above] {$\pi/2$};
+    \draw[decorate, decoration = snake, very thick, red, opacity=0.5,] 
+    ({\tmin + \dtstart+\T},0) to ({\tmin + \dtstart + \T},{.9*\zmax}) node[above] {$\pi$};
+    \draw[decorate, decoration = snake, very thick, red, opacity=0.5,] 
+    ({\tmin + \dtstart + 2*\T},0) to ({\tmin + \dtstart + 2*\T},{.9*\zmax}) node[above] {$\pi/2$};
+\end{tikzpicture}
+%\end{document}

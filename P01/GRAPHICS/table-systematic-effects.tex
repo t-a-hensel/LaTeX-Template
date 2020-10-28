@@ -1,0 +1,23 @@
+%\documentclass[]{standalone}
+%\input{preamble}
+%\begin{document}
+%
+\begin{tabular}[]{@{}l|ll|ll|ll@{}}
+\toprule
+\multicolumn{1}{c|}{\multirow{2}{*}{Parameter\textbackslash{}Case}} & \multicolumn{2}{c|}{Gravimeter}             & \multicolumn{2}{c|}{Gradiometer}                                   & \multicolumn{2}{c}{WEP-test}                              \\ \cmidrule(l){2-7} 
+\multicolumn{1}{c|}{}                                               & thermal              & BEC                  & thermal                          & BEC                             & thermal                          & BEC                    \\ \midrule
+N$_\text{at}$ (initial)                                             & $1\times 10^9$       & $1\times 10^6$       & $1\times 10^9$                   & $1\times 10^6$                  & $1\times 10^9$                   & $1\times 10^6$         \\
+T$_\text{at}$ (K)                                                   & $80\times 10^{-9}$   & $50\times 10^{-12}$  & $80\times 10^{-9}$               & $50\times 10^{-12}$             & $80\times 10^{-9}$               & $50\times 10^{-12}$    \\
+P$_\text{exc}$                                                      & 0.57                 & 0.99                 & 0.33                             & 0.97                            & 0.43                             & 0.99                   \\ \midrule
+t$_\text{int}$ (s); n$_\text{cycle}$                                & 3.36; 7              & 3.45; 3              & 86400; 72000                     & 86400; 4320                     & $2\times 10^7$; $2.4\times 10^7$ & $2\times 10^7$; $10^6$ \\
+$\nu_0$                                                             & \multicolumn{2}{c|}{1}                      & \multicolumn{2}{c|}{50}                                            & \multicolumn{2}{c}{$10^6$}                                \\
+2T (s)                                                              & \multicolumn{2}{c|}{150$\times 10^{-3}$}    & 0.5                              & 10                              & 0.5                              & 10                     \\
+$\mathcal{O}(\delta_{\phi_\text{target}})$                          & \multicolumn{2}{c|}{$\Delta g/g=10^{-9}$}   & \multicolumn{2}{c|}{$\Gamma=2.5$ mE$=2.5\times 10^{-12}$ s$^{-2}$} & \multicolumn{2}{c}{$\eta=2\times 10^{-15}$}               \\
+$\mathcal{O}(\sigma_{\phi_\text{SN}})$                              & $1.2\times 10^{-11}$ & $3.3\times 10^{-10}$ & $5.0\times 10^{-13}$ s$^{-2}$    & $5.5\times 10^{-14}$ s$^{-2}$   & $1.2\times 10^{-15}$             & $2.1\times 10^{-16}$   \\ \midrule
+$\mathcal{O}(\delta_{\phi_\text{GG}})$                              & $4.9\times 10^{-15}$ & $1.1\times 10^{-14}$ & $2.4\times 10^{-14}$ s$^{-2}$    & $9.9\times 10^{-13}$ s$^{-2}$   & $1.1\times 10^{-17}$             & $4.8\times 10^{-16}$   \\
+$\mathcal{O}(\delta_{\phi_\text{C}})$                               & $1.8\times 10^{-14}$ & $3.7\times 10^{-14}$ & $7.0\times 10^{-14}$ s$^{-2}$    & $1.5\times 10^{-13}$ s$^{-2}$   & $3.7\times 10^{-17}$             & $7.6\times 10^{-17}$   \\
+$\mathcal{O}(\delta_{\phi_\text{WFA}})$                             & $3.4\times 10^{-10}$ & $2.1\times 10^{-13}$ & $1.0\times 10^{-12}$ s$^{-2}$    & $4.4\times 10^{-15}$ s$^{-2}$   & $1.3\times 10^{-12}$             & $8.0\times 10^{-16}$   \\
+$\mathcal{O}(\sigma_{\phi_\text{MF}})$                              & $1.3\times 10^{-11}$ & $9.2\times 10^{-10}$ & $4.7\times 10^{-13}$ s$^{-2}$    & $5.4\times 10^{-13}$ s$^{-2}$   & $1.1\times 10^{-15}$             & $1.8\times 10^{-15}$   \\ \bottomrule
+\end{tabular}
+%
+%\end{document}
