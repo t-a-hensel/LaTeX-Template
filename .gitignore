@@ -1,5 +1,6 @@
 ##added by me:
 *.d
+P01/_build/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
