@@ -89,7 +89,8 @@
 %\graphicspath{{SECTIONS/GRAPHICS/}}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{graphicx}
-\RequirePackage{caption,subcaption}%for subfigures
+\RequirePackage[bf,format=plain]{caption}
+\RequirePackage{subcaption}%for subfigures
 \RequirePackage{standalone}%to separately produce standalone figures
 \RequirePackage{import}%to import figures later
 %
@@ -114,6 +115,7 @@
 \RequirePackage{rotating}
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
+\RequirePackage{longtable}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %			print git-hash			%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,12 +138,12 @@
 %\renewcommand{\sectionmark}[1]{ \markright{#1} }
 
 \fancyhf{}
-\fancyhead[LE,RO]{\footnotesize{p. \thepage\ / \pageref{LastPage}}}
-\fancyhead[RE]{\emph{ \nouppercase{\leftmark}} }
-\fancyhead[LO]{\emph{ \nouppercase{\rightmark}} }
-\fancyfoot[CE,CO]{\iftoggle{submissionBuild}{}{%
+\fancyhead[LE,RO]{\iftoggle{submissionBuild}{}{%
   	\noindent{\emph{Revision}\/}: \hl{\mbox{\#\gitVer}}
 	}}
+\fancyhead[RE]{\emph{ \nouppercase{\leftmark}} }
+\fancyhead[LO]{\emph{ \nouppercase{\rightmark}} }
+\fancyfoot[CE,CO]{\footnotesize{Page \thepage\ / \pageref{LastPage}}}
 
 
 \fancypagestyle{plain}{ %
