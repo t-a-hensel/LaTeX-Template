@@ -1,41 +1,54 @@
-% !TEX options=--shell-escape
-
 %\documentclass[class=article, 12pt, crop=false]{standalone}
-%\documentclass[11pt, english, fleqn, DIV=15, headinclude]{scrartcl}
+%\documentclass{scrartcl}
+%\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm]{scrreprt}
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm]{scrartcl}
+%\documentclass[11pt,twoside,a4paper]{article}
+%\usepackage[a4paper,left=1.5cm,right=1.5cm,top=2.0cm,bottom=2.5cm,bindingoffset=0mm]{geometry}
 
-\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm]{scrreprt}
 \usepackage[
     color,
     bibatend,
 ]{../../header}
-
 \graphicspath{{../GRAPHICS}{./}}
-%\usepackage[a4paper,left=1.5cm,right=1.5cm,top=2.0cm,bottom=2.5cm,bindingoffset=0mm]{geometry}
 
-%\input{preamble}
+\usepackage{needspace}
+
+\hypersetup{
+    pdftitle=
+}
+
+\usepackage{longtable}
+\usepackage{subcaption}
+
+\usepackage[all]{nowidow}
+
+\subject{Lab report}
+\title{Precision inertial sensing with quantum gases}
+%\subtitle{A comparative performance study of condensed versus thermal sources for atom interferometry}
+\author{%
+    Thomas Arne Hensel \\
+    \small{\href{mailto:hensel@iqo.uni-hannover.de}{hensel@iqo.uni-hannover.de}}
+}
+
+\date{\daterange{2016-05-23}{2016-05-24}}
+
+\publishers{Tutor: Gautam Ramola}
 
 %-------------------------------------------------------
 \begin{document}
 %\captionsetup{width=0.88\textwidth}
 %
-\title{Precision inertial sensing with quantum gases}
-%\subtitle{A comparative performance study of condensed versus thermal sources for atom interferometry}
-\author{Thomas Arne Hensel}
 %
 \input{../SECTIONS/titlepage}
-
-\begin{center}
-    \Large\textbf{Abstract}
-\end{center}
 %
-\abstract{
+\begin{abstract}
 %Classical Inertial Measurement Units exhibit the problem of low precision and large drifts in accuracy. 
 %The high sensitivity of quantum systems may allow the construction of a Quantum Inertial Measurement Unit to avoid these issues.
 Quantum sensors based on light-pulse atom interferometers allow for high-precision measurements of inertial and electromagnetic forces such as the accurate determination of fundamental constants as the fine structure constant or testing foundational laws of modern physics as the equivalence principle.
 These schemes unfold their full performance when large interrogation times and/or large momentum transfer can be implemented.
 In this thesis, we demonstrate how precision interferometry can benefit from the use of Bose-Einstein condensed sources when the state of the art is challenged.
 We contrast systematic and statistical effects induced by Bose-Einstein condensed sources with thermal sources in three exemplary science cases of Earth- and space-based sensors. The results of this thesis may contribute to the development of the next generation of inertial measurement units.
-}
+\end{abstract}
 \newpage
 %
 \tableofcontents
