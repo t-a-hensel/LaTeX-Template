@@ -1,7 +1,4 @@
-%\documentclass[class=article, 12pt, crop=false]{standalone}
-%\documentclass{scrartcl}
-%\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm]{scrreprt}
-\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm, twoside]{scrartcl}
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm, twoside, abstract=true]{scrartcl}
 %\documentclass[11pt,twoside,a4paper]{article}
 \usepackage[a4paper,left=2.5cm,right=1.5cm,top=2.5cm,bottom=2.5cm,bindingoffset=0mm]{geometry}
 
@@ -10,10 +7,6 @@
     bibatend,
 ]{../../header}
 \graphicspath{{../GRAPHICS}{./}}
-
-\usepackage{needspace}
-
-\usepackage[all]{nowidow}
 
 \subject{Master's Thesis}
 \title{Precision inertial sensing with quantum gases}
@@ -29,18 +22,31 @@
 
 %-------------------------------------------------------
 \begin{document}
-%\captionsetup{width=0.88\textwidth}
+\settoggle{submissionBuild}{true}
 %
 %
 \input{../SECTIONS/titlepage}
 %
 \begin{abstract}
-%Classical Inertial Measurement Units exhibit the problem of low precision and large drifts in accuracy. 
-%The high sensitivity of quantum systems may allow the construction of a Quantum Inertial Measurement Unit to avoid these issues.
-Quantum sensors based on light-pulse atom interferometers allow for high-precision measurements of inertial and electromagnetic forces such as the accurate determination of fundamental constants as the fine structure constant or testing foundational laws of modern physics as the equivalence principle.
-These schemes unfold their full performance when large interrogation times and/or large momentum transfer can be implemented.
-In this thesis, we demonstrate how precision interferometry can benefit from the use of Bose-Einstein condensed sources when the state of the art is challenged.
-We contrast systematic and statistical effects induced by Bose-Einstein condensed sources with thermal sources in three exemplary science cases of Earth- and space-based sensors. The results of this thesis may contribute to the development of the next generation of inertial measurement units.
+	%Classical Inertial Measurement Units exhibit the problem of low precision 
+	%and large drifts in accuracy. 
+	%The high sensitivity of quantum systems may allow the construction of a Quantum
+	%Inertial Measurement Unit to avoid these issues.
+	Quantum sensors based on light-pulse atom interferometers allow for 
+	high-precision measurements of inertial and electromagnetic forces 
+	such as the accurate determination of fundamental constants as the 
+	fine structure constant or testing foundational laws of modern physics 
+	as the equivalence principle.
+	These schemes unfold their full performance when large interrogation 
+	times and/or large momentum transfer can be implemented.
+	In this thesis, we demonstrate how precision interferometry can 
+	benefit from the use of Bose-Einstein condensed sources when the 
+	state of the art is challenged.
+	We contrast systematic and statistical effects induced by 
+	Bose-Einstein condensed sources with thermal sources in three 
+	exemplary science cases of Earth- and space-based sensors. The 
+	results of this thesis may contribute to the development of the 
+	next generation of inertial measurement units.
 \end{abstract}
 \newpage
 %

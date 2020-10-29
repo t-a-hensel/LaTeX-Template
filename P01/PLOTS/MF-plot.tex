@@ -40,7 +40,7 @@
                 \coordinate (top11) at (rel axis cs:1,1);
                 \coordinate (bot11) at (rel axis cs:1,0);
                 %\node [text width=2em,anchor=north west] at (rel axis cs: -0.05,1.05)
-                %{\subcaption{\label{fig:density-plot}}};
+                %{\captionof{figure}{}\label{fig:density-plot}};
         \nextgroupplot[xmin=9.
         				,xmax=10.
         				,ymin=2*10^7
@@ -67,7 +67,7 @@
         				,ytick=\empty
         				]
         		%\node [text width=1em,anchor=north west] at (rel axis cs: 0,1)
-                %{\subcaption{\label{fig:sigma-MF-plot}}};
+                %{\subcaption{}\label{fig:sigma-MF-plot}};
                 \addplot[blue,dashed,domain=0:1] table \ErrorDataBEC;
                 \addplot[red,domain=0:1] table \ErrorDataTHE;              
                 \draw[dashed, thin] ({axis cs:0.5,0}|-{rel axis cs:0,1}) -- ({axis cs:0.5,0}|-{rel axis cs:0,0});

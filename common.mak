@@ -1,8 +1,6 @@
 # Copyright © 2013-2014, 2016 Martin Ueding <dev@martin-ueding.de>
 # Licensed under The MIT License
 
-SUBMISSIONBUILD ?= true
-
 # Do not throw away intermediate results.
 .PRECIOUS: %.tex %.pdf build/page/%.pdf build/page/%.tex
 
@@ -108,7 +106,6 @@ $(build)/to_crop:
 # TikZ graphics.
 $(out): $(tex) $(figures_pdf) $(plots_pdf) $(postscript_pdf)
 	@echo "$(on)Compiling main document$(off)"
-	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/${SUBMISSIONBUILD}/" $<
 	cd $$(dirname $@) && $(latexrun) -O $$(basename $< .tex).out $$(basename $<)
 
 # The main LaTeX file is generated using the template engine.
