@@ -34,8 +34,8 @@
     \RequirePackage[utf8]{inputenc}
 \fi
 
-\RequirePackage{csquotes}
-\RequirePackage{babel}
+\RequirePackage[english]{babel}
+\RequirePackage[autostyle=true,english=american]{csquotes}
 %\RequirePackage[iso]{date}
 \RequirePackage{microtype} % optional, for aesthetics
 \RequirePackage{fontawesome}
@@ -43,7 +43,7 @@
 %			Bibliography			%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \if@bibatend
-    \newcommand\bibliographyfile{../BIB/Bibliography.bib}
+    \newcommand\bibliographyfile{../../BIB/Bibliography.bib}
 	\RequirePackage[backend=biber,style=numeric-comp,sorting=none,natbib=true]{biblatex}
 	\IfFileExists{\bibliographyfile}{
       \bibliography{\bibliographyfile}
@@ -80,7 +80,7 @@
 \RequirePackage{amsthm}
 \RequirePackage{commath}
 \usepackage{siunitx}
-\RequirePackage{eulervm}
+%\RequirePackage{eulervm}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %		Figures and Plotting		%
@@ -121,7 +121,7 @@
 \newtoggle{submissionBuild}
 \settoggle{submissionBuild}{false}
 \nottoggle{submissionBuild}{%
-	\RequirePackage{gitver}
+	\RequirePackage[noheader]{gitver}
 	\RequirePackage{soul}
 	\sethlcolor{green}
 }{}
