@@ -25,7 +25,7 @@ green := $(shell tput setaf 2)
 red := $(shell tput setaf 1)
 reset := $(shell tput sgr0)
 
-latexrun := ../../latexrun.py --bibtex-cmd biber
+latexrun := ../../latexrun.py --bibtex-cmd biber --latex-args='-shell-escape'
 
 # Main document.
 tex := "$(build)/Hensel_project-$(number).tex"
