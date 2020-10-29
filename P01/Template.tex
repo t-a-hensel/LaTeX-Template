@@ -3,7 +3,7 @@
 %\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm]{scrreprt}
 \documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=2cm, twoside]{scrartcl}
 %\documentclass[11pt,twoside,a4paper]{article}
-\usepackage[a4paper,left=2cm,right=1cm,top=2.0cm,bottom=2.5cm,bindingoffset=0mm]{geometry}
+\usepackage[a4paper,left=2.5cm,right=1.5cm,top=2.5cm,bottom=2.5cm,bindingoffset=0mm]{geometry}
 
 \usepackage[
     color,
@@ -13,13 +13,9 @@
 
 \usepackage{needspace}
 
-\hypersetup{
-    pdftitle=
-}
-
 \usepackage[all]{nowidow}
 
-\subject{Lab report}
+\subject{Master's Thesis}
 \title{Precision inertial sensing with quantum gases}
 %\subtitle{A comparative performance study of condensed versus thermal sources for atom interferometry}
 \author{%
@@ -27,9 +23,9 @@
     \small{\href{mailto:hensel@iqo.uni-hannover.de}{hensel@iqo.uni-hannover.de}}
 }
 
-\date{\daterange{2016-05-23}{2016-05-24}}
-
-\publishers{Tutor: Gautam Ramola}
+\hypersetup{
+    pdftitle=\@title
+}
 
 %-------------------------------------------------------
 \begin{document}

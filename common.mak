@@ -28,8 +28,8 @@ reset := $(shell tput sgr0)
 latexrun := ../../latexrun.py --bibtex-cmd biber --latex-args='-shell-escape'
 
 # Main document.
-tex := "$(build)/Hensel_project-$(number).tex"
-out := "$(build)/Hensel_project-$(number).pdf"
+tex := "$(build)/Hensel_MA-thesis-$(number).tex"
+out := "$(build)/Hensel_MA-thesis-$(number).pdf"
 
 # LaTeX and PDF filenames for the figures, plots and Feynman graphs.
 figures_tex := $(wildcard FIGURES/*.tex)
@@ -108,7 +108,7 @@ $(build)/to_crop:
 # TikZ graphics.
 $(out): $(tex) $(figures_pdf) $(plots_pdf) $(postscript_pdf)
 	@echo "$(on)Compiling main document$(off)"
-	cd $$(dirname $@) && $(latexrun) -O $$(basename $< .tex).out $$(basename $<)
+	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/${SUBMISSIONBUILD}/" $< ; cd $$(dirname $@) && $(latexrun) -O $$(basename $< .tex).out $$(basename $<)
 
 # The main LaTeX file is generated using the template engine.
 $(tex): Template.tex $(build)/template.js
@@ -165,12 +165,10 @@ $(build)/%.pdf: $(build)/to_crop/%.pdf
 
 # Figures and plots (but not Feynman diagrams) can be compiled using pdflatex.
 %.pdf: %.tex
-	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/${SUBMISSIONBUILD}/" $<
 	@echo "$(on)Typesetting figure $<$(off)"
 	cd $$(dirname $@) && ../$(latexrun) -O $$(basename $< .tex).out $$(basename $<)
 
 $(build)/%.pdf: Postscript/%.ps
-	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/${SUBMISSIONBUILD}/" $<
 	@echo "$(on)Converting PS file $<$(off)"
 	ps2pdf $< /tmp/ps2pdf_$$(basename $@)
 	pdfcrop /tmp/ps2pdf_$$(basename $@) $@
