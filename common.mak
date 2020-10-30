@@ -68,6 +68,12 @@ open:
 # report.
 crunch: $(build)/template.js
 
+#Running `make submission` will create the submission build without the git hash printed
+#SUBMISSIONBUILD ?= false
+#submission: $(tex)
+#	SUBMISSIONBUILD ?= true
+#	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/$(SUBMISSIONBUILD)/" $<
+
 # In case this is running on Fedora, it will be Martin's computer. Then it has
 # a recent version of LuaLaTeX and TikZ and can compile the Feynman diagrams
 # with `tikz-feynman`. If it is not Fedora, it is Lino's computer where the

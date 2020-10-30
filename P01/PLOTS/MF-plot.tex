@@ -12,7 +12,7 @@
 \pgfplotstableread{../xy/ErrorDataBEC.txt}{\ErrorDataBEC}
 \pgfplotstableread{../xy/ErrorDataTHE.txt}{\ErrorDataTHE}%
 %
-
+%
 \begin{tikzpicture}%[x=1cm,y=1cm,scale=1.0]
     \begin{groupplot}[group style={group size= 2 by 2
     								,vertical sep=0.2cm
@@ -21,7 +21,9 @@
     								}
     					%,width=1/2*\linewidth-0.3cm
     					%,height=1.2*(1/2*\linewidth-0.3cm)
-    					,legend style={nodes={scale=0.8, transform shape}}	,xtick={0,0.25,0.5,0.75,1,9.,9.25,9.5,9.75,10}
+    					,legend style={nodes={scale=0.8, transform shape}}
+    					,xtick={0,0.25,0.5,0.75,1,9.,9.25,9.5,9.75,10}
+    					,subtitle/.style={title=\gpsubtitle{#1}}
     					]
         \nextgroupplot[xmin=0
         				,xmax=1.0
@@ -30,7 +32,8 @@
         				,ymode=log
         				,axis y line*=left
         				,ytick=\empty
-        				,ylabel={$\rho$ (Atoms/cm$^3$)}]
+        				,ylabel={$\rho$ (Atoms/cm$^3$)}%]
+        				,subtitle=\label{fig:density-plot}
         				]
                 \addplot[blue,dashed,domain=0:1] 
                 		table [x expr=\thisrowno{0},y expr=\thisrowno{1}*10^-6] \DensityDataBEC;
@@ -39,8 +42,6 @@
                 \draw[dashed, thin] ({axis cs:0.5,0}|-{rel axis cs:0,1}) -- ({axis cs:0.5,0}|-{rel axis cs:0,0});
                 \coordinate (top11) at (rel axis cs:1,1);
                 \coordinate (bot11) at (rel axis cs:1,0);
-                %\node [text width=2em,anchor=north west] at (rel axis cs: -0.05,1.05)
-                %{\captionof{figure}{}\label{fig:density-plot}};
         \nextgroupplot[xmin=9.
         				,xmax=10.
         				,ymin=2*10^7
@@ -65,9 +66,8 @@
         				,ylabel={$\mathcal{O}(\sigma_{\phi_\text{MF}})$ (s$^{-2}$)}
         				,axis y line*=left
         				,ytick=\empty
+        				,subtitle=\label{fig:sigma-MF-plot}
         				]
-        		%\node [text width=1em,anchor=north west] at (rel axis cs: 0,1)
-                %{\subcaption{}\label{fig:sigma-MF-plot}};
                 \addplot[blue,dashed,domain=0:1] table \ErrorDataBEC;
                 \addplot[red,domain=0:1] table \ErrorDataTHE;              
                 \draw[dashed, thin] ({axis cs:0.5,0}|-{rel axis cs:0,1}) -- ({axis cs:0.5,0}|-{rel axis cs:0,0});

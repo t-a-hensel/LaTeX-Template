@@ -88,9 +88,9 @@
 %		Figures and Plotting		%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%\graphicspath{{SECTIONS/GRAPHICS/}}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{graphicx}
+\graphicspath{{../GRAPHICS}{./}}
 \RequirePackage[bf,format=plain]{caption}
 \RequirePackage{subcaption}%for subfigures
 \RequirePackage{standalone}%to separately produce standalone figures
@@ -105,6 +105,11 @@
 \pgfplotsset{
     ,compat=newest%1.12
     }
+    
+\makeatletter
+\newcommand\gpsubtitle[1]{(\@alph{\pgfplots@group@current@plot}) #1}
+\makeatother
+
 \usepgfplotslibrary{groupplots}
 \usepgflibrary{patterns}
 \RequirePackage{pgfplotstable}
