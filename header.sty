@@ -65,15 +65,46 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{hyperref}
 \RequirePackage{lastpage}
-\hypersetup{
-	breaklinks=false,
-	citecolor=red,
-	colorlinks=true,
-	linkcolor=red,
-	menucolor=black,
-	pdfauthor={Thomas Arne Hensel},
-	urlcolor=blue
-}
+
+\if@beamer
+\else
+    \RequirePackage{hyperref}
+
+    % This sets the author in the properties of the PDF as well. If you want to
+    % change it, just override it with another ``\hypersetup`` call.
+    \hypersetup{
+		breaklinks=false,
+		citecolor=red,
+		colorlinks=true,
+		linkcolor=red,
+		menucolor=black,
+		pdfauthor={Thomas Arne Hensel},
+		urlcolor=blue
+	}
+
+    \if@color
+        \hypersetup{
+			breaklinks=false,
+			citecolor=red,
+			colorlinks=true,
+			linkcolor=red,
+			menucolor=black,
+			pdfauthor={Thomas Arne Hensel},
+			urlcolor=blue
+		}
+    \else
+        \hypersetup{
+        	hidelinks=true,
+			breaklinks=false,
+			citecolor=black,
+			colorlinks=false,
+			linkcolor=black,
+			menucolor=black,
+			pdfauthor={Thomas Arne Hensel},
+			urlcolor=black
+		}
+    \fi
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %				math				%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,6 +131,23 @@
 \usetikzlibrary{calc,matrix,positioning}
 \usetikzlibrary{decorations.pathmorphing,patterns}
 \RequirePackage{tikzscale}
+%%%%%%%%%%%%%%%%%%%tikz stuff to get images scaled correctly->TODO
+%\RequirePackage{environ}
+%\makeatletter
+%\newsavebox{\measure@tikzpicture}
+%\NewEnviron{scaletikzpicturetowidth}[1]{%
+%  \def\tikz@width{#1}%
+%  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+%  \BODY
+%  \end{lrbox}%
+%  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+%  \edef\tikzscale{\pgfmathresult}%
+%  \BODY
+%}
+%\makeatother
+%\begin{scaletikzpicturetowidth}{\textwidth}
+%\end{scaletikzpicturetowidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \RequirePackage{pgfplots}
 \pgfplotsset{
