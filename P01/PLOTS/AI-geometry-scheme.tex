@@ -1,8 +1,7 @@
-%\documentclass{standalone}
-%\input{preamble}
-%\begin{document}
-
-\begin{tikzpicture}
+\begin{tikzpicture}[declare function={
+        f(\z,\v,\x) = \z+\v*\x-0.5*\g*\x^2;
+        }
+]
 %
 \begin{axis}[
     %title={Dual-species Mach-Zehnder atom interferometer},
@@ -13,8 +12,8 @@
     axis lines = left,
     y=1.cm,
     x=1.cm,
-    xtick={0,0.7,1.7,3.7,5.7,6.7},%{0,\tmin,\tmin+\dtstart,\tmin+\dtstart+\T,\tmin+\dtstart+\T+\T,\tmin+\dtstart+\T+\T+\dtmax},
-    xticklabels={$0$,$t_{start}$,$t_0$,$t_0+T$,$t_0+2T$,$t_{end}$},
+    xtick={0,\tmin,\tmin+\dtstart,\tmin+\dtstart+\T,\tmin+\dtstart+\T+\T,\tmin+\dtstart+\T+\T+\dtmax},
+    xticklabels={$0$,$t_\text{start}$,$t_0$,$t_0+T$,$t_0+2T$,$t_\text{end}$},
     ytick={0,1,...,12},
     legend pos=north west,
     %grid=both,
@@ -133,4 +132,3 @@
     \draw[decorate, decoration = snake, very thick, red, opacity=0.5,] 
     ({\tmin + \dtstart + 2*\T},0) to ({\tmin + \dtstart + 2*\T},{.9*\zmax}) node[above] {$\pi/2$};
 \end{tikzpicture}
-%\end{document}

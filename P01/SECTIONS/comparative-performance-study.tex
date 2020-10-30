@@ -1,6 +1,3 @@
-%\documentclass[class=article, crop=false]{standalone}
-%\input{preamble}
-%\begin{document}
 Based on the discussion of phase shifts and performance-limiting effects in the previous section, we now elaborate on three study cases in which we compare quantum degenerate ensembles to thermal sources.
 In highly dynamical environments, such as inertial sensing and for navigation purposes, thermal sources may be beneficial since they typically feature more atoms and shorter cycle times, which decreases both, shot noise and integration time. However, a trade-off has to be found for every particular situation due to their relatively high expansion rates and spatial extension.
 The three specific examples selected for the comparison consist of inertial sensors that could operate beyond state-of-the-art in the near future: \emph{(i)} A ground-based gravimeter with a relative uncertainty of $\Delta g/g=10^{-9}$, \emph{(ii)} a space gradiometer with a $2.5$\,mE resolution \cite{Trimeche2019} and \emph{(iii)} a WEP-test with an uncertainty of $2\times10^{-15}$ in the determination of the Eötvös ratio \cite{Aguilera2014}. The interferometer geometries are illustrated in \autoref{fig:AI-geometry-scheme}.
@@ -43,14 +40,6 @@ The modified spatial and velocity spreads are the evaluation input for the mean-
 The results of this study are summarized in \autoref{tab:numbers} where the phase uncertainties are normalized as fractional phases $\phi/k_\text{eff}gT^2$ for the gravimeter and the WEP test. In the gradiometer case, the orders of magnitude are given in units of $\phi/k_\text{eff}DT^2=\Gamma$ for a baseline D. Here, $\phi_\text{target}$ is the upper limit for any systematic or statistical phase uncertainty.
 
 Detailed results for the three science cases are presented in the consecutive sections.
-
-%\begin{landscape}% Landscape page
-%    \centering % Center table
-%    %\subimport{GRAPHICS/}{table-systematic-effects.tex}
-%    \input{../GRAPHICS/table-systematic-effects}
-%    \captionof{table}{none}
-%    \label{tab:numbers}
-%\end{landscape}
 
 \begin{center}
     \begin{table}[h!]
@@ -111,10 +100,10 @@ Interestingly, following our treatment in \autoref{subsec:MF-effects}, we find t
     \centering
     \resizebox{0.9\linewidth}{!}{
         %\subimport{GRAPHICS/}{MF-plot.tex}
-        %\input{./PLOTS/MF-plot}
-        \includegraphics[width=\linewidth]{../MF-plot}
+        \input{../PLOTS/MF-plot}
+        %\includegraphics[width=\linewidth]{../MF-plot}
         }
-    \caption{Atomic densities and time averaged mean-field statistical uncertainty for the space-gradiometer scenario described in \autoref{tab:numbers}. (a) Time-dependent density $\rho$ of the ensembles during the interferometer time based on the DKC sequence described in \autoref{tab:DKC}. (b) Fractional statistical phase uncertainty $\mathcal{O}(\sigma_{\phi_\text{MF}})$ due to mean-field effects according to equation \autoref{eq:MF} integrated over a number of $n_\text{cycle}$ experiments. }
+    \caption{Atomic densities and time averaged mean-field statistical uncertainty for the space-gradiometer scenario described in \autoref{tab:numbers}. \autoref{subfig:density-plot} Time-dependent density $\rho$ of the ensembles during the interferometer time based on the DKC sequence described in \autoref{tab:DKC}. \autoref{subfig:sigma-MF-plot} Fractional statistical phase uncertainty $\mathcal{O}(\sigma_{\phi_\text{MF}})$ due to mean-field effects according to equation \autoref{eq:MF} integrated over a number of $n_\text{cycle}$ experiments. }
     \label{fig:MF-effects}
 \end{figure}
 
@@ -127,8 +116,7 @@ Being limited by WFA at the level of $4.4\times10^{-15}$, the BEC clearly leaves
 
 \begin{figure}[h!]
     \centering
-    %\subimport{GRAPHICS/}{AI-geometry-scheme.tex}
-    \input{../GRAPHICS/AI-geometry-scheme}
+    \input{../PLOTS/AI-geometry-scheme}
     %\includegraphics[width=0.5\linewidth]{../AI-geometry-scheme}
     \caption{The geometry for a gradiometer consists of two MZ sequences that are operated simultaneously (black and blue lines). Each MZ sequence is formed by three consecutive light pulses that constitute a beam splitter (first $\pi/2$-pulse), a mirror ($\pi$-pulse) and a merging beam splitter after $2T$. The dashed lines indicate a change of the internal state due to a momentum transfer by the atom-light interaction. 
     A single MZ sequence corresponds to a gravimeter sequence to measure the coupling constant $g$ of the gravitational field to one species.
@@ -156,4 +144,3 @@ To reach the targeted uncertainty, an additional $10^6$ verification measurement
 With a thermal ensemble, one would need an integration time on the order of $10^8$ s to suppress mean-field effects, and $10^6$ verification shots to estimate the phase uncertainty due to GGs and the Coriolis effect to a sufficient level. Moreover, even for the reduced interrogation time of 0.5 s, the contrast is at 43\% and the shot noise is almost 6 times larger than in the BEC case.
 
 We conclude that - for the chosen set of parameters - it is possible to achieve the mission goals with condensed ensembles. The thermal case is, however, limited to the $10^{-12}$ level due to the WFA effects stemming from the large expansion rates of the thermal ensembles~\cite{Karcher2018}. In order to reach a reduced velocity spread with a thermal ensemble comparable to that of a BEC, the DKC would be required to handle ensembles with a diameter on the order of 0.5\,m after a pre-lens free expansion time of several seconds. As for the space-gradiometer, this is unpractical for obvious manipulation and excitation reasons. In the condensed regime, a simultaneous collimation of the dual-source was recently considered in reference~\cite{Corgier2020} and shown to be feasible.
-%\end{document}
