@@ -1,5 +1,25 @@
 # Copyright © 2013-2014, 2016 Martin Ueding <dev@martin-ueding.de>
 # Licensed under The MIT License
+SUBMISSIONBUILD=true
+TITLE=Hensel-MA-thesis
+
+#fetch git-hash
+TAG_COMMIT := $(shell git rev-list --abbrev-commit --tags --max-count=1)
+# `2>/dev/null` suppress errors and `|| true` suppress the error codes.
+TAG := $(shell git describe --abbrev=0 --tags ${TAG_COMMIT} 2>/dev/null || true)
+# here we strip the version prefix
+VERSION := $(TAG:v%=%)
+# get the latest commit hash in the short form
+COMMIT := $(shell git rev-parse --short HEAD)
+# get the latest commit date in the form of YYYYmmdd
+DATE := $(shell git log -1 --format=%cd --date=format:"%Y%m%d")
+# check if the version string is empty
+ifeq "$(VERSION)" ""
+	VERSION := $(COMMIT)-$(DATE)
+endif
+#submission: $(tex)
+#	SUBMISSIONBUILD ?= true
+#	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/$(SUBMISSIONBUILD)/" $<
 
 # Do not throw away intermediate results.
 .PRECIOUS: %.tex %.pdf build/page/%.pdf build/page/%.tex
@@ -26,8 +46,13 @@ reset := $(shell tput sgr0)
 latexrun := ../../latexrun.py --bibtex-cmd biber --latex-args='-shell-escape'
 
 # Main document.
-tex := "$(build)/Hensel_MA-thesis-$(number).tex"
-out := "$(build)/Hensel_MA-thesis-$(number).pdf"
+ifeq "$(SUBMISSIONBUILD)" "false"
+	tex := "$(build)/$(TITLE)-$(VERSION).tex"
+	out := "$(build)/$(TITLE)-$(VERSION).pdf"
+else
+	tex := "$(build)/$(TITLE).tex"
+	out := "$(build)/$(TITLE).pdf"
+endif
 
 # LaTeX and PDF filenames for the figures, plots and Feynman graphs.
 figures_tex := $(wildcard FIGURES/*.tex)
@@ -67,12 +92,6 @@ open:
 # if has output from the Python program but does not want to typeset the
 # report.
 crunch: $(build)/template.js
-
-#Running `make submission` will create the submission build without the git hash printed
-#SUBMISSIONBUILD ?= false
-#submission: $(tex)
-#	SUBMISSIONBUILD ?= true
-#	sed -i "/settoggle{submissionBuild}/ s/\(true\|false\)/$(SUBMISSIONBUILD)/" $<
 
 # In case this is running on Fedora, it will be Martin's computer. Then it has
 # a recent version of LuaLaTeX and TikZ and can compile the Feynman diagrams
