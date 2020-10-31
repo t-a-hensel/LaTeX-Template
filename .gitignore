@@ -2,6 +2,7 @@
 *.d
 __pycache__/
 P01/_build/
+P01/GRAPHICS/signature.jpg
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
