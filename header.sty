@@ -112,7 +112,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{commath}
-\usepackage{siunitx}
+\RequirePackage{siunitx}
 %\RequirePackage{eulervm}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,6 +191,7 @@
 \fancyhead[LE,RO]{\iftoggle{submissionBuild}{}{%
   	\noindent{\emph{Revision}\/}: \hl{\mbox{\#\gitVer}}
 	}}
+%\fancyhead[LE,RO]{<< git_version >>}
 \fancyhead[RE]{\emph{ \nouppercase{\leftmark}} }
 \fancyhead[LO]{\emph{ \nouppercase{\rightmark}} }
 \fancyfoot[CE,CO]{\footnotesize{Page \thepage\ / \pageref{LastPage}}}

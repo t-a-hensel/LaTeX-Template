@@ -37,9 +37,9 @@
         				,ylabel={$\rho$ (Atoms/cm$^3$)}%]
         				]
                 \addplot[blue,dashed,domain=0:1] 
-                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}*10^-6] \DensityDataBEC;
+                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}] \DensityDataBEC;
                 \addplot[red,domain=0:1]
-                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}*10^-6] \DensityDataTHE;
+                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}] \DensityDataTHE;
                 \draw[dashed, thin] ({axis cs:0.5,0}|-{rel axis cs:0,1}) -- ({axis cs:0.5,0}|-{rel axis cs:0,0});
                 \coordinate (top11) at (rel axis cs:1,1);
                 \coordinate (bot11) at (rel axis cs:1,0);
@@ -54,10 +54,10 @@
         				,axis y line*=right
         				]
                 \addplot[blue,dashed,domain=9:10]
-                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}*10^-6] \DensityDataBEC;
+                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}] \DensityDataBEC;
                 \addlegendentry{$^{87}$Rb BEC}
                 \addplot[red,domain=9:10]
-                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}*10^-6] \DensityDataTHE;
+                		table [x expr=\thisrowno{0},y expr=\thisrowno{1}] \DensityDataTHE;
                 \addlegendentry{$^{87}$Rb thermal}
                 \coordinate (top12) at (rel axis cs:0,1);
                 \coordinate (bot12) at (rel axis cs:0,0);

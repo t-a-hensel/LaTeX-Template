@@ -29,17 +29,127 @@ import bootstrap
 
 SAMPLES = 100
 
+def job_density_data_BEC(T):
+    data = np.loadtxt('DATA/DensityDataBEC.txt')
+    time = data[:, 0]
+    density = data[:, 1] * 1e-6
+
+    np.savetxt('_build/xy/DensityDataBEC.txt',
+               np.column_stack([time, density]))
+    T['density_data_BEC_table'] = list(zip(
+        siunitx(time),
+        siunitx(density),
+    ))
+    T['init_density_BEC'] = siunitx(density[0], density[1])
+
+def job_density_data_THE(T):
+    data = np.loadtxt('DATA/DensityDataTHE.txt')
+    time = data[:, 0]
+    density = data[:, 1] * 1e-6
+
+    np.savetxt('_build/xy/DensityDataTHE.txt',
+               np.column_stack([time, density]))
+
+def job_error_data_BEC(T):
+    data = np.loadtxt('DATA/ErrorDataBEC.txt')
+    time = data[:, 0]
+    error = data[:, 1]
+
+    np.savetxt('_build/xy/ErrorDataBEC.txt',
+               np.column_stack([time, error]))
+
+def job_error_data_THE(T):
+    data = np.loadtxt('DATA/ErrorDataTHE.txt')
+    time = data[:, 0]
+    error = data[:, 1]
+
+    np.savetxt('_build/xy/ErrorDataTHE.txt',
+               np.column_stack([time, error]))
+
+def job_dkc_BEC(T):
+    data = np.loadtxt('DATA/dkc_BEC.dat')
+    time = data[:, 0]
+    size = data[:, 1]
+
+    np.savetxt('_build/xy/dkc_BEC.dat',
+               np.column_stack([time, size]))
+
+def job_dkc_CLS(T):
+    data = np.loadtxt('DATA/dkc_CLS.dat')
+    time = data[:, 0]
+    size = data[:, 1]
+
+    np.savetxt('_build/xy/dkc_CLS.dat',
+               np.column_stack([time, size]))
+
+def job_nodkc_BEC(T):
+    data = np.loadtxt('DATA/nodkc_BEC.dat')
+    time = data[:, 0]
+    size = data[:, 1]
+
+    np.savetxt('_build/xy/nodkc_BEC.dat',
+               np.column_stack([time, size]))
+
+def job_nodkc_CLS(T):
+    data = np.loadtxt('DATA/nodkc_CLS.dat')
+    time = data[:, 0]
+    size = data[:, 1]
+
+    np.savetxt('_build/xy/nodkc_CLS.dat',
+               np.column_stack([time, size]))
+
+def test_keys(T):
+    '''
+    Testet das dict auf Schlüssel mit Bindestrichen.
+    '''
+    dash_keys = []
+    for key in T:
+        if '-' in key:
+            dash_keys.append(key)
+
+    if len(dash_keys) > 0:
+        print()
+        print('**************************************************************')
+        print('* Es dürfen keine Bindestriche in den Schlüsseln für T sein! *')
+        print('**************************************************************')
+        print()
+        print('Folgende Schlüssel enthalten Bindestriche:')
+        for dash_key in dash_keys:
+            print('-', dash_key)
+        print()
+        sys.exit(100)
+
 
 def main():
-    
-    shutil.copy2('DATA/DensityDataBEC.txt', '_build/xy/')# target filename is /dst/dir/file.ext
-    shutil.copy2('DATA/DensityDataTHE.txt', '_build/xy/')
-    shutil.copy2('DATA/ErrorDataBEC.txt', '_build/xy/')
-    shutil.copy2('DATA/ErrorDataTHE.txt', '_build/xy/')
-    shutil.copy2('DATA/dkc_BEC.dat', '_build/xy/')
-    shutil.copy2('DATA/dkc_CLS.dat', '_build/xy/')
-    shutil.copy2('DATA/nodkc_BEC.dat', '_build/xy/')
-    shutil.copy2('DATA/nodkc_CLS.dat', '_build/xy/')
+
+    T = {}
+
+    # We use bootstrap and obtain different results every single time. This is
+    # bad, therefore we fix the seed here.
+    random.seed(0)
+
+    parser = argparse.ArgumentParser()
+    options = parser.parse_args()
+
+    job_density_data_BEC(T)
+    job_density_data_THE(T)
+    job_error_data_BEC(T)
+    job_error_data_THE(T)
+    job_dkc_BEC(T)
+    job_dkc_CLS(T)
+    job_nodkc_BEC(T)
+    job_nodkc_CLS(T)
+
+    test_keys(T)
+    with open('_build/template.js', 'w') as f:
+        json.dump(dict(T), f, indent=4, sort_keys=True)
+
+    pp = pprint.PrettyPrinter()
+    print()
+    print('Content in T dict:')
+    pp.pprint(T)
+
+
 
 if __name__ == "__main__":
     main()
