@@ -44,7 +44,7 @@ red := $(shell tput setaf 1)
 reset := $(shell tput sgr0)
 
 latexrun := ../../latexrun.py --bibtex-cmd biber --latex-args='-shell-escape'
-insertpy := ../insert.py #--submission-args=$(VERSION)#default insertpy config for submission: no git-hash printed
+insertpy := ../insert.py --submission-args=$(VERSION)#default insertpy config for submission: no git-hash printed
 
 # Main document.
 tex := "$(build)/$(TITLE).tex"
@@ -71,7 +71,7 @@ all: show-distribution $(out)
 
 submission: show-distribution $(out)
 #	insertpy := "$(insertpy)"
-#	XXX übergebe hier das submission argument als json daten.
+#	XXX übergebe hier das submission argument als json daten bzw ändere die optionen für insertpy!
 #	tex := "$(build)/$(TITLE)-$(VERSION).tex"
 	
 
